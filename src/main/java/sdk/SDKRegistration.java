@@ -1,5 +1,7 @@
 package sdk;
 
+import dto.data.OperationMode;
+
 import java.util.Collection;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -8,7 +10,7 @@ public class SDKRegistration {
 
     private static final Map<String, WeatherSDK> activeSDK = new ConcurrentHashMap<>();
 
-    public static WeatherSDK getInstant(String apiKey, WeatherSDK.OperationMode operationMode) {
+    public static WeatherSDK getInstance(String apiKey, OperationMode operationMode) {
         return activeSDK.computeIfAbsent(apiKey, key -> new WeatherSDK(key, operationMode));
     }
 
